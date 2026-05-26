@@ -10,9 +10,9 @@ export function renderFilters(
   if (!container) return;
 
   container.innerHTML = `
-    <div class="bg-white p-6 rounded-xl shadow-md">
+    <div class="card p-6 rounded-xl">
 
-      <h2 class="text-2xl font-bold mb-4">
+      <h2 class="text-2xl font-bold mb-4 text-primary">
         Filtros
       </h2>
 
@@ -49,7 +49,7 @@ export function renderFilters(
 
       <button
         id="filter-btn"
-        class="mt-4 bg-blue-600 text-white px-4 py-2 rounded"
+        class="mt-4 btn-primary-filled px-4 py-2 rounded"
       >
         Filtrar
       </button>

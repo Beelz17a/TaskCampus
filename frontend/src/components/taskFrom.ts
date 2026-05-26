@@ -11,8 +11,8 @@ export function renderTaskForm(
   if (!container) return;
 
   container.innerHTML = `
-    <div class="bg-white p-6 rounded-xl shadow-md">
-      <h2 class="text-2xl font-bold mb-4">
+    <div class="card p-6 rounded-xl">
+      <h2 class="text-2xl font-bold mb-4 text-primary">
         ${taskToEdit ? "Editar Tarea" : "Nueva Tarea"}
       </h2>
 
@@ -71,7 +71,7 @@ export function renderTaskForm(
 
         <button
           type="submit"
-          class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+          class="btn-primary-filled px-4 py-2 rounded"
         >
           ${taskToEdit ? "Actualizar" : "Guardar"} tarea
         </button>

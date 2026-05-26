@@ -27,16 +27,16 @@ export function renderTaskList(
   }
 
   container.innerHTML = `
-    <div class="bg-white p-6 rounded-xl shadow-md overflow-auto">
+    <div class="card p-6 rounded-xl overflow-auto">
 
-      <h2 class="text-2xl font-bold mb-4">
+      <h2 class="text-2xl font-bold mb-4 text-primary">
         Lista de Tareas
       </h2>
 
-      <table class="w-full border-collapse">
+      <table class="w-full">
 
         <thead>
-          <tr class="bg-gray-200">
+          <tr class="table-head">
             <th class="p-2 text-left">Título</th>
             <th class="p-2 text-left">Materia</th>
             <th class="p-2 text-left">Prioridad</th>
@@ -57,16 +57,13 @@ export function renderTaskList(
                   <td class="p-2">${task.subject}</td>
 
                   <td class="p-2">
-                    <span class="
-                      px-2 py-1 rounded text-white
-                      ${
-                        task.priority === "Alta"
-                          ? "bg-red-500"
-                          : task.priority === "Media"
-                          ? "bg-yellow-500"
-                          : "bg-green-500"
-                      }
-                    ">
+                    <span class="px-2 py-1 rounded text-white ${
+                      task.priority === "Alta"
+                        ? "badge-high"
+                        : task.priority === "Media"
+                        ? "badge-medium"
+                        : "badge-low"
+                    }">
                       ${task.priority}
                     </span>
                   </td>
@@ -78,14 +75,14 @@ export function renderTaskList(
                   <td class="p-2 flex gap-2">
 
                     <button
-                      class="edit-btn bg-blue-500 text-white px-3 py-1 rounded"
+                      class="edit-btn btn-primary px-3 py-1 rounded"
                       data-id="${task.id}"
                     >
                       Editar
                     </button>
 
                     <button
-                      class="delete-btn bg-red-500 text-white px-3 py-1 rounded"
+                      class="delete-btn btn-danger px-3 py-1 rounded"
                       data-id="${task.id}"
                     >
                       Eliminar

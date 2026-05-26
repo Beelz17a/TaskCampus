@@ -91,10 +91,10 @@ function renderFilteredTasks(tasks: Task[], onEdit: (t: Task) => void, onRefresh
         Resultado de filtros
       </h2>
 
-      <table class="w-full border-collapse">
+      <table class="w-full">
 
         <thead>
-          <tr class="bg-gray-200">
+          <tr class="table-head">
             <th class="p-2 text-left">Título</th>
             <th class="p-2 text-left">Materia</th>
             <th class="p-2 text-left">Prioridad</th>
@@ -119,10 +119,10 @@ function renderFilteredTasks(tasks: Task[], onEdit: (t: Task) => void, onRefresh
                       px-2 py-1 rounded text-white
                       ${
                         task.priority === "Alta"
-                          ? "bg-red-500"
+                          ? "badge-high"
                           : task.priority === "Media"
-                          ? "bg-yellow-500"
-                          : "bg-green-500"
+                          ? "badge-medium"
+                          : "badge-low"
                       }
                     ">
                       ${task.priority}
@@ -136,14 +136,14 @@ function renderFilteredTasks(tasks: Task[], onEdit: (t: Task) => void, onRefresh
                   <td class="p-2 flex gap-2">
 
                     <button
-                      class="edit-btn bg-blue-500 text-white px-3 py-1 rounded"
+                      class="edit-btn btn-primary px-3 py-1 rounded"
                       data-id="${task.id}"
                     >
                       Editar
                     </button>
 
                     <button
-                      class="delete-btn bg-red-500 text-white px-3 py-1 rounded"
+                      class="delete-btn btn-danger px-3 py-1 rounded"
                       data-id="${task.id}"
                     >
                       Eliminar
