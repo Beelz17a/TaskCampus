@@ -16,7 +16,7 @@ export function renderTaskForm(
         ${taskToEdit ? "Editar Tarea" : "Nueva Tarea"}
       </h2>
 
-      <form id="task-form" class="space-y-4">
+      <form class="task-form space-y-4">
 
         <input
           type="text"
@@ -55,18 +55,18 @@ export function renderTaskForm(
           id="priority"
           class="w-full border p-2 rounded"
         >
-          <option value="Baja">Baja</option>
-          <option value="Media">Media</option>
-          <option value="Alta">Alta</option>
+          <option value="Baja" ${taskToEdit?.priority === "Baja" ? "selected" : ""}>Baja</option>
+          <option value="Media" ${taskToEdit?.priority === "Media" ? "selected" : ""}>Media</option>
+          <option value="Alta" ${taskToEdit?.priority === "Alta" ? "selected" : ""}>Alta</option>
         </select>
 
         <select
           id="status"
           class="w-full border p-2 rounded"
         >
-          <option value="Pendiente">Pendiente</option>
-          <option value="En proceso">En proceso</option>
-          <option value="Finalizada">Finalizada</option>
+          <option value="Pendiente" ${taskToEdit?.status === "Pendiente" ? "selected" : ""}>Pendiente</option>
+          <option value="En proceso" ${taskToEdit?.status === "En proceso" ? "selected" : ""}>En proceso</option>
+          <option value="Finalizada" ${taskToEdit?.status === "Finalizada" ? "selected" : ""}>Finalizada</option>
         </select>
 
         <button
@@ -80,21 +80,31 @@ export function renderTaskForm(
     </div>
   `;
 
-  const form = document.getElementById("task-form") as HTMLFormElement;
+  const form = container.querySelector<HTMLFormElement>(".task-form");
+  if (!form) return;
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
+    const title = container.querySelector<HTMLInputElement>("#title");
+    const description = container.querySelector<HTMLTextAreaElement>("#description");
+    const subject = container.querySelector<HTMLInputElement>("#subject");
+    const dueDate = container.querySelector<HTMLInputElement>("#dueDate");
+    const priority = container.querySelector<HTMLSelectElement>("#priority");
+    const status = container.querySelector<HTMLSelectElement>("#status");
+
+    if (!title || !description || !subject || !dueDate || !priority || !status) {
+      return;
+    }
+
     const task: Task = {
       id: taskToEdit?.id || Date.now(),
-      title: (document.getElementById("title") as HTMLInputElement).value,
-      description: (document.getElementById("description") as HTMLTextAreaElement).value,
-      subject: (document.getElementById("subject") as HTMLInputElement).value,
-      dueDate: (document.getElementById("dueDate") as HTMLInputElement).value,
-      priority: (document.getElementById("priority") as HTMLSelectElement)
-        .value as Task["priority"],
-      status: (document.getElementById("status") as HTMLSelectElement)
-        .value as Task["status"],
+      title: title.value,
+      description: description.value,
+      subject: subject.value,
+      dueDate: dueDate.value,
+      priority: priority.value as Task["priority"],
+      status: status.value as Task["status"],
     };
 
     if (taskToEdit) {

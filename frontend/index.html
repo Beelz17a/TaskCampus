@@ -24,18 +24,43 @@
 
     <!-- MAIN -->
     <main class="container mx-auto p-6 space-y-6">
+      <!-- CRUD: pestañas y contenido -->
+      <section id="crud" class="">
 
-      <!-- RESUMEN -->
-      <section id="summary"></section>
+        <div class="max-w-4xl mx-auto">
 
-      <!-- FORM -->
-      <section id="task-form-container"></section>
+          <!-- Mini-pestañas -->
+          <div class="tabs flex gap-2 mb-4" role="tablist" aria-label="CRUD Tabs">
+            <button class="tab-btn px-3 py-1 rounded-md text-sm bg-white shadow-sm active" data-target="tab-list" role="tab">Listar</button>
+            <button class="tab-btn px-3 py-1 rounded-md text-sm bg-white shadow-sm" data-target="tab-form" role="tab">Agregar</button>
+            <button class="tab-btn px-3 py-1 rounded-md text-sm bg-white shadow-sm" data-target="tab-form" data-mode="edit" role="tab">Editar</button>
+            <button class="tab-btn px-3 py-1 rounded-md text-sm bg-white shadow-sm" data-target="tab-list" data-mode="delete" role="tab">Eliminar</button>
+          </div>
 
-      <!-- FILTROS -->
-      <section id="filters-container"></section>
+          <!-- Recuadro principal donde se renderiza cada vista -->
+          <div class="crud-box bg-white p-6 rounded-xl shadow-md">
 
-      <!-- LISTA -->
-      <section id="task-list"></section>
+            <!-- Contenido: Listado -->
+            <div id="tab-list" class="tab-panel">
+              <div id="delete-banner" class="hidden mb-4 rounded-lg border border-red-200 bg-red-50 p-4 text-red-700">
+                <strong>Modo Eliminar activo:</strong> selecciona una tarea para borrar. Solo se muestran las opciones de eliminación.
+              </div>
+              <section id="summary"></section>
+              <section id="filters-container" class="mt-4"></section>
+              <section id="task-list" class="mt-4"></section>
+            </div>
+
+            <!-- Contenido: Form (Agregar / Editar) -->
+            <div id="tab-form" class="tab-panel hidden">
+              <section id="task-form-add"></section>
+              <section id="task-form-edit" class="hidden"></section>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
 
     </main>
 
